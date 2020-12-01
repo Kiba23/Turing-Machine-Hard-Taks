@@ -1,7 +1,10 @@
 ; PART 1
 
-0 * * L 0
-0 _ ^ R start
+0 _ * * halt-reject
+0 * * * start-point
+
+start-point * * L start-point
+start-point _ ^ R start
 
 start * * R start
 start _ * R check-space
