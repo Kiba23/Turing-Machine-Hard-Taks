@@ -1,0 +1,63 @@
+; PART 1
+
+0 * * L 0
+0 _ ^ R start
+
+start * * R start
+start _ * R check-space
+start # * * check-space
+
+check-space _ - R check-space
+check-space 0 * R start
+check-space 1 * R start
+check-space # * * return-back
+
+return-back * * L return-back
+return-back ^ * * checking-minus
+
+checking-minus * * R checking-minus
+checking-minus - * R check-next
+checking-minus # * * check-next
+
+check-next - * * checking-minus
+check-next _ * R checking-minus
+check-next 0 - L place-zero
+check-next 1 - L place-one
+check-next # * * minus-move
+
+place-zero - 0 L return-back
+place-one - 1 L return-back
+
+; PART 2
+
+minus-move * * L minus-move
+minus-move ^ * * st1
+
+st1 * * R st1
+st1 - * R minus-check
+
+minus-check - * R minus-check
+minus-check 0 - L st2
+minus-check 1 - L st3
+minus-check _ - L st4
+minus-check # _ L hash-move
+
+st2 * 0 L minus-move
+st3 * 1 L minus-move
+st4 * _ L minus-move
+
+; PART 3
+
+hash-move - * L hash-move
+hash-move * * R hash-place
+
+hash-place * # R move-back
+
+move-back * * L move-back
+move-back ^ _ R st5
+
+st5 * * R st5
+st5 # * R accept
+
+accept - _ R accept
+accept * * * halt
