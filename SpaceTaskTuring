@@ -29,7 +29,7 @@ place-zero - 0 L return-back
 place-one - 1 L return-back
 
 ; PART 2
-
+ 
 minus-move * * L minus-move
 minus-move ^ * * st1
 
